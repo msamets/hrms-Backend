@@ -24,7 +24,10 @@ public class JobPositionManager implements JobPositionService {
 	@Autowired//(gidiyor projeyi tarıyor bu projede bu sınıfa denk geleni buluyor)
 	public JobPositionManager(JobPositionDao jobPositionDao) {
 		this.jobPositionDao = jobPositionDao;
-
+		
+	}
+	
+	
 	@Override
 	public DataResult<List<JobPosition>> getAll() {
 		

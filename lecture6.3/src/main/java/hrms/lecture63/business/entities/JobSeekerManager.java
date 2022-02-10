@@ -101,9 +101,7 @@ public class JobSeekerManager implements JobSeekerService{
 					+ "Lütfen geçerli bir şifre giriniz.");
 		}
 		
-
 		jobSeeker.setEmailVerification(true);
-
 		
 		if(!isValidPerson(jobSeeker).isSuccess()) {
 			return new ErrorResult("Böyle biri yok lütfen bilgilerinizi kontrol ediniz.");
