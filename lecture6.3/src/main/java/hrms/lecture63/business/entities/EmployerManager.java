@@ -87,11 +87,9 @@ public class EmployerManager implements EmployerService {
 		}
 		
 		
-
 		
 		employer.setEmailVerification(true);
 		employer.setVerificationFromSystemEmployee(true);
-
 		
 		this.employerDao.save(employer);
 		return new SuccessResult("İş veren başarıyla eklendi");
