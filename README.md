@@ -1,2 +1,2 @@
 # hrms-Backend
-Human resource management system's backend project with n tier architecture.
+Human resource management system backend project with n tier architecture.
