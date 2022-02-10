@@ -1,5 +1,6 @@
 package hrms.lecture63.entities.concretes;
 
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -10,6 +11,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,6 +25,7 @@ import lombok.NoArgsConstructor;
 @PrimaryKeyJoinColumn(name = "user_id")
 @NoArgsConstructor
 @AllArgsConstructor
+
 @JsonIgnoreProperties({"hibernateLazInitializer","handler"})
 public class Employer extends User {
 	
@@ -35,6 +38,7 @@ public class Employer extends User {
 	
 	@Column(name = "telefon_no")
 	private String telefonNo;
+
 	
 	@JsonIgnoreProperties(value = {"employer"})
 	@OneToMany(mappedBy = "employer" )//, cascade = CascadeType.ALL, orphanRemoval = true
@@ -43,6 +47,7 @@ public class Employer extends User {
 	
 	@Column(name = "verification_from_system_employee")
 	private boolean verificationFromSystemEmployee;
+
 
 	
 
