@@ -87,10 +87,11 @@ public class EmployerManager implements EmployerService {
 		}
 		
 		
-		//eposta doğrulama servisi yapmaya çalıştım baya bi ilerledim ama mevcut bilgimle yapamayıp kanser oldum
-		//başlangıcın 6. saati o yüzden bırakıyorum simülasyonunu yapıyorum
-		emailVerificationService.verification(employer);
-		hrmsVerificationService.verification(employer);
+
+		
+		employer.setEmailVerification(true);
+		employer.setVerificationFromSystemEmployee(true);
+
 		
 		this.employerDao.save(employer);
 		return new SuccessResult("İş veren başarıyla eklendi");
