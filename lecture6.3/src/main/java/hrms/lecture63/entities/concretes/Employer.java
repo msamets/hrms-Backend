@@ -9,6 +9,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -23,7 +24,7 @@ import lombok.NoArgsConstructor;
 @PrimaryKeyJoinColumn(name = "user_id")
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIgnoreProperties({"hibernateLazInitializer","handler"})
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class Employer extends User {
 	
 
@@ -35,7 +36,7 @@ public class Employer extends User {
 	
 	@Column(name = "telefon_no")
 	private String telefonNo;
-	
+
 	@JsonIgnoreProperties(value = {"employer"})
 	@OneToMany(mappedBy = "employer" )//, cascade = CascadeType.ALL, orphanRemoval = true
 	private List<JobAdvertisement> jobAdvertisements;
