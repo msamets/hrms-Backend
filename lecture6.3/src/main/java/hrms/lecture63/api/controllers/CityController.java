@@ -34,7 +34,7 @@ public class CityController {
 		return this.cityService.getAll();
 	}
 	
-	//deneme
+	//son denemeeeeee
 
 
 }
