@@ -73,20 +73,15 @@ public class JobSeekerManager implements JobSeekerService{
 
 	@Override
 	public Result add(JobSeeker jobSeeker) throws Exception {
-		String emailRegex = "^([\\p{L}\\d(?=\\S+$)\\.-]+)@([a-z\\d-]+)\\.([a-z]{2,8})(\\.[a-z]{2,8})?$";
+
 		String passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(.*[@#$%^&+=])?(?=\\S+$).{6,}$";
-		Pattern pattern =	Pattern.compile(emailRegex,Pattern.UNICODE_CHARACTER_CLASS);
+		Pattern pattern =	Pattern.compile(passwordRegex,Pattern.UNICODE_CHARACTER_CLASS);
 		
-		if(jobSeeker.getAd()==null || jobSeeker.getBirthYear()==0 || jobSeeker.getEmail()==null 
-				|| jobSeeker.getPassword()==null || jobSeeker.getSoyad()==null || jobSeeker.getTcNo()==null) {
-			return new ErrorResult("Bütün alanlar doldurulmak zorunda.");
-		}
+
 		
-		else if(!pattern.matches(emailRegex, jobSeeker.getEmail())) {
-			return new ErrorResult("Girmiş olduğunuz e-mail geçerli değil.Lütfen başka bir e-mail giriniz.");
-		}
+
 		
-		else if(isEmailExist(jobSeeker.getEmail()).isSuccess()) {
+		if(isEmailExist(jobSeeker.getEmail()).isSuccess()) {
 			return new ErrorResult("Girmiş olduğunuz email daha önce kullanılmıştır.");
 		}
 		

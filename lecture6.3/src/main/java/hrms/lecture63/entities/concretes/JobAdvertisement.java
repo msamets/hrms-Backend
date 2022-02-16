@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.CreatedDate;
 
@@ -37,14 +40,20 @@ public class JobAdvertisement {
 	@JsonIgnore
 	@ManyToOne//(cascade = CascadeType.ALL)
 	@JoinColumn(name = "employer_id")
+	@NotBlank
+	@NotNull
 	private Employer employer;
 	
 	@JsonIgnore
 	@ManyToOne//(cascade = CascadeType.ALL)
 	@JoinColumn(name = "job_position_id")
+	@NotBlank
+	@NotNull
 	private JobPosition jobPosition;
 	
 	@Column(name = "job_detail")
+	@NotBlank
+	@NotNull
 	private String jobDetail;
 	/*
 	@Column(name = "city")
@@ -57,6 +66,8 @@ public class JobAdvertisement {
 	private int maxSalary;//opsiyonel
 	
 	@Column(name = "open_position")
+	@NotBlank
+	@NotEmpty
 	private int openPosition;
 	
 	@Column(name = "application_deadline")
@@ -72,6 +83,8 @@ public class JobAdvertisement {
 	@JsonIgnore
 	@ManyToOne//(cascade = CascadeType.ALL)
 	@JoinColumn(name = "city_id")
+	@NotBlank
+	@NotNull
 	private City city;
 
 }

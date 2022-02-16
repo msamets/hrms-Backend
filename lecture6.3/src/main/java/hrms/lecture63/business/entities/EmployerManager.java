@@ -62,20 +62,15 @@ public class EmployerManager implements EmployerService {
 
 	@Override
 	public Result add(Employer employer) {
-		String emailRegex = "^([\\p{L}\\d(?=\\S+$)\\.-]+)@([a-z\\d-]+)\\.([a-z]{2,8})(\\.[a-z]{2,8})?$";
 		String passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(.*[@#$%^&+=])?(?=\\S+$).{6,}$";
-		Pattern pattern =	Pattern.compile(emailRegex,Pattern.UNICODE_CHARACTER_CLASS);
+		Pattern pattern =	Pattern.compile(passwordRegex,Pattern.UNICODE_CHARACTER_CLASS);
 		
-		if(employer.getEmail()==null ||employer.getPassword()==null ||employer.getSirketAdi()==null
-				||employer.getSirketWebsite()==null ||employer.getTelefonNo()==null)
-			return new ErrorResult("Herhangi bir alan boş bırakılamaz.");
+
 			
-		else if(!pattern.matches(emailRegex, employer.getEmail())) {
-			return new ErrorResult("Girmiş olduğunuz e-mail geçerli değil.Lütfen başka bir e-mail giriniz.");
-		}
+
 		
 		
-		else if(isEmailExist(employer.getEmail()).isSuccess()) {
+		if(isEmailExist(employer.getEmail()).isSuccess()) {
 			return new ErrorResult("Girmiş olduğunuz email daha önce kullanılmış.");
 		}
 		
