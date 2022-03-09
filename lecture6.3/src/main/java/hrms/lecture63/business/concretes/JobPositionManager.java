@@ -1,10 +1,8 @@
-package hrms.lecture63.business.entities;
+package hrms.lecture63.business.concretes;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import hrms.lecture63.business.abstracts.JobPositionService;

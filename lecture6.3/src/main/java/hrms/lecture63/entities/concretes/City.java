@@ -33,7 +33,7 @@ public class City {
 	@Column(name = "id")
 	private int id;
 	
-	@Column(name = "name")
+	@Column(name = "name",nullable = false,unique = true)
 	@NotNull
 	@NotBlank
 	private String name;

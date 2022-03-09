@@ -18,7 +18,7 @@ import hrms.lecture63.entities.concretes.City;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api/cities")
+@RequestMapping("/api/city")
 public class CityController {
 	private CityService cityService;
 	

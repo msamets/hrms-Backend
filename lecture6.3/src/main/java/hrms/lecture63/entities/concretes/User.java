@@ -1,12 +1,6 @@
 package hrms.lecture63.entities.concretes;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -19,6 +13,7 @@ import lombok.NoArgsConstructor;
 
 @Data//lombok
 @Entity//bu class ın bir entity classı olduğunu belirtiyoruz
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name="users")//veritabanında hangi tabloya denk geldiğini belirtiyoruz
 @AllArgsConstructor
 @NoArgsConstructor
@@ -30,18 +25,19 @@ public class User {
 	@Column(name = "id")//hangi kolona denk geldiği
 	private int id;
 	
-	@Column(name = "email")
+	@Column(name = "email", unique = true, nullable = false)
 	@NotBlank
 	@NotNull
 	@Email
 	private String email;
 	
-	@Column(name = "password")
+	@Column(name = "password", nullable = false)
 	@NotBlank
 	@NotNull
 	private String password;
 	
 	@Column(name = "email_verification")
+	@NotNull
 	private boolean emailVerification;
 	
 	

@@ -1,4 +1,4 @@
-package hrms.lecture63.business.entities;
+package hrms.lecture63.business.concretes;
 
 import java.util.List;
 
