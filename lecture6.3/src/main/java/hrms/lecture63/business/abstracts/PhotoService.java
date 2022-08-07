@@ -6,6 +6,7 @@ import hrms.lecture63.entities.concretes.Photo;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 public interface PhotoService {
 
@@ -18,4 +19,6 @@ public interface PhotoService {
     Result deleteById(int photoId) throws IOException;
 
     Result deleteByPublicId(String publicId) throws IOException;
+
+    DataResult<List<Photo>> getByUserId(int userId);
 }

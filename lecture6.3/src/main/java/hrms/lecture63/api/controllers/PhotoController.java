@@ -1,6 +1,8 @@
 package hrms.lecture63.api.controllers;
 
 import hrms.lecture63.business.abstracts.PhotoService;
+import hrms.lecture63.core.utilities.results.DataResult;
+import hrms.lecture63.entities.concretes.Photo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -8,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.List;
 
 
 @RestController
@@ -40,6 +43,11 @@ public class PhotoController {
     @DeleteMapping("/deleteByPublicId")
     public ResponseEntity<Object> deleteByPublicId(@RequestParam String publicId) throws IOException {
         return ResponseEntity.ok(photoService.deleteByPublicId(publicId));
+    }
+
+    @GetMapping("/getByUserId")
+    public DataResult<List<Photo>> getByUserId(@RequestParam int userId){
+        return photoService.getByUserId(userId);
     }
 
 

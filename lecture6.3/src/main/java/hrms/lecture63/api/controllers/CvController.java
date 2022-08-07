@@ -75,4 +75,9 @@ public class CvController {
     public DataResult<List<JobSeekerSchool>> findJobSeekerSchoolOrderByGraduationDateDesc(int cvId){
         return this.cvService.findJobSeekerSchoolOrderByGraduationDateDesc(cvId);
     }
+
+    @PutMapping("/addPhotoToCv")
+    public ResponseEntity<Object> addPhotoToCv(@RequestParam @Valid int cvId,@RequestParam @Valid int photoId){
+        return ResponseEntity.ok(this.cvService.addPhotoToCv(cvId, photoId));
+    }
 }

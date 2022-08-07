@@ -87,13 +87,11 @@ public interface CvDao  extends JpaRepository<Cv,Integer> {
     void addSkillToCv(@Param("cvId") int cvId,@Param("skill") String skill);
 
 
+    @Modifying
+    @Query(
+            value = "UPDATE Cv cv SET cv.photo.id = :photoId WHERE cv.id = :cvId"
+    )
+    void addPhotoToCv(int cvId, int photoId);
 
 
-
-
-
-    //okulu desc sırala mezun değilse en üstte Devam ediyor yazılmalı
-    //bu tecrübeleri yıllara göre sırala
-    //işten ayrılma sebebi boş geçilmeli eğer hala çalışıyorsaen üstte devam ediyor yazmalı
-    //photo will be out-service integration
 }

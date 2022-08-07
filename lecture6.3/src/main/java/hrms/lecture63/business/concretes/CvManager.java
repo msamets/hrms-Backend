@@ -3,10 +3,7 @@ package hrms.lecture63.business.concretes;
 import hrms.lecture63.business.abstracts.CvService;
 import hrms.lecture63.core.utilities.JobSeekerJobQuitDateComparator;
 import hrms.lecture63.core.utilities.results.*;
-import hrms.lecture63.dataAcces.abstracts.CvDao;
-import hrms.lecture63.dataAcces.abstracts.JobSeekerJobExperienceDao;
-import hrms.lecture63.dataAcces.abstracts.JobSeekerLanguageDao;
-import hrms.lecture63.dataAcces.abstracts.JobSeekerSchoolDao;
+import hrms.lecture63.dataAcces.abstracts.*;
 import hrms.lecture63.entities.concretes.Cv;
 import hrms.lecture63.entities.concretes.JobSeekerJobExperience;
 import hrms.lecture63.entities.concretes.JobSeekerSchool;
@@ -29,6 +26,8 @@ public class CvManager implements CvService {
     @Autowired
     private JobSeekerJobExperienceDao jobSeekerJobExperienceDao;
 
+    @Autowired
+    private PhotoDao photoDao;
 
     @Override
     public DataResult<List<Cv>> getAll() {
@@ -169,6 +168,18 @@ public class CvManager implements CvService {
         //değiştirilebilir.
 
         return new SuccessDataResult<List<JobSeekerSchool>>(sortedJobSeekerSchoolOrderByDescNullFirst, "Okullar yıla göre tersten sıralandı.");
+    }
+
+    @Override
+    public Result addPhotoToCv(int cvId, int photoId) {
+        if(!cvDao.existsById(cvId))
+            return new ErrorResult("Böyle bir cv bulunamadı.");
+        else if(!photoDao.existsById(photoId))
+            return new ErrorResult("Böyle bir fotoğraf bulunamadı.");
+
+
+        cvDao.addPhotoToCv(cvId, photoId);
+        return new SuccessResult("Fotoğraf  başarıyla eklendi");
     }
 
 

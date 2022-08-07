@@ -20,4 +20,6 @@ public interface CvService {
     Result addSkillToCv(int cvId, String skill);
     DataResult<List<JobSeekerJobExperience>> findJobSeekerJobExperienceOrderByQuitJobDateDesc(int cvId);
     DataResult<List<JobSeekerSchool>> findJobSeekerSchoolOrderByGraduationDateDesc(int cvId);
+
+    Result addPhotoToCv(int cvId, int photoId);
 }

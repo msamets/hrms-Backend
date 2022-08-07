@@ -44,7 +44,7 @@ public class Cv {
             inverseJoinColumns = @JoinColumn(name = "job_seeker_school_id", referencedColumnName = "id")
     )
     @JsonIgnoreProperties(value = {"cv"})
-    private List<JobSeekerSchool> jobSeekerSchools;//OneToMany
+    private List<JobSeekerSchool> jobSeekerSchools;
 
 
     @ManyToMany
@@ -54,7 +54,7 @@ public class Cv {
             inverseJoinColumns = @JoinColumn(name = "job_seeker_job_experience_id", referencedColumnName = "id")
     )
     @JsonIgnoreProperties(value = {"cv"})
-    private List<JobSeekerJobExperience> jobSeekerJobExperiences;//OneToMany
+    private List<JobSeekerJobExperience> jobSeekerJobExperiences;
 
 
     @ManyToMany
@@ -67,7 +67,12 @@ public class Cv {
     private List<JobSeekerLanguage> jobSeekerLanguages;
 
 
-    //pictureFromUser//if i have to set sql relationship, it will be  OneTone
+    //pictureFromUser//if i have to set sql relationship, it will be
+    //cv just 1 photo for each cv but photo can be inside a lot of cv.
+    @ManyToOne
+    @JoinColumn(name = "photo_id", referencedColumnName = "id")
+    @JsonIgnoreProperties(value = {"cv"})
+    private Photo photo;
 
     @Column(name = "github_profile")
     private String githubProfile;
@@ -83,6 +88,6 @@ public class Cv {
 
 
 
-    //CV nin daosunu  ManyToMany lerden başlayarak yazacağım burda kaldım
+
 
 }

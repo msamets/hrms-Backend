@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -106,5 +107,13 @@ public class PhotoManager implements PhotoService {
         photoDao.deleteByPublicId(publicId);
 
         return new SuccessResult("Fotoğraf başarıyla silindi.");
+    }
+
+    @Override
+    public DataResult<List<Photo>> getByUserId(int userId) {
+        if(!userDao.existsById(userId))
+            return new ErrorDataResult<>("Böyle bir kullanıcı yok.");
+
+        return new SuccessDataResult<>(photoDao.getByUserId(userId),"Kullanıcıya ait fotoğraflar başarıyla listelendi.");
     }
 }
