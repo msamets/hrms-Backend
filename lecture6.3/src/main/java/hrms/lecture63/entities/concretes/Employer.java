@@ -2,12 +2,9 @@ package hrms.lecture63.entities.concretes;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -20,24 +17,32 @@ import lombok.NoArgsConstructor;
 @Data
 @EqualsAndHashCode(callSuper=false)
 @Entity
+//@DiscriminatorValue("Employer")            it is for hibernate inheritance one table strategy
 @Table(name = "employers")
-@PrimaryKeyJoinColumn(name = "user_id")
+@PrimaryKeyJoinColumn(name = "user_id", referencedColumnName = "id")
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class Employer extends User {
 	
 
-	@Column(name = "sirket_adi")
+	@Column(name = "sirket_adi", nullable = false, unique = true)
+	@NotNull
+	@NotBlank
 	private String sirketAdi;
 	
-	@Column(name = "sirket_website")
+	@Column(name = "sirket_website", unique = false, nullable = false)
+	@NotNull
+	@NotBlank
 	private String sirketWebsite;
 	
-	@Column(name = "telefon_no")
+	@Column(name = "telefon_no", nullable = false, unique = true)
+	@NotNull
+	@NotBlank
 	private String telefonNo;
 
-	@JsonIgnoreProperties(value = {"employer"})
+	//@JsonIgnoreProperties(value = {"employer"})
+	@JsonIgnore
 	@OneToMany(mappedBy = "employer" )//, cascade = CascadeType.ALL, orphanRemoval = true
 	private List<JobAdvertisement> jobAdvertisements;
 	
