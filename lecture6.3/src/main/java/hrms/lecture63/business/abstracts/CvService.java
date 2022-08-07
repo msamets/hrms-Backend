@@ -22,4 +22,6 @@ public interface CvService {
     DataResult<List<JobSeekerSchool>> findJobSeekerSchoolOrderByGraduationDateDesc(int cvId);
 
     Result addPhotoToCv(int cvId, int photoId);
+
+    DataResult<List<Cv>> getByJobSeekerId(int jobSeekerId);
 }

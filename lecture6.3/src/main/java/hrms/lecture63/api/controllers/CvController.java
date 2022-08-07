@@ -80,4 +80,9 @@ public class CvController {
     public ResponseEntity<Object> addPhotoToCv(@RequestParam @Valid int cvId,@RequestParam @Valid int photoId){
         return ResponseEntity.ok(this.cvService.addPhotoToCv(cvId, photoId));
     }
+
+    @GetMapping("/getByJobSeeker")
+    public DataResult<List<Cv>> getCvsByJobSeeker(@RequestParam int jobSeekerId){
+        return cvService.getByJobSeekerId(jobSeekerId);
+    }
 }

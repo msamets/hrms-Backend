@@ -29,6 +29,9 @@ public class CvManager implements CvService {
     @Autowired
     private PhotoDao photoDao;
 
+    @Autowired
+    private JobSeekerDao jobSeekerDao;
+
     @Override
     public DataResult<List<Cv>> getAll() {
         return new SuccessDataResult<List<Cv>>(this.cvDao.findAll(),"Cv'ler listelendi");
@@ -180,6 +183,14 @@ public class CvManager implements CvService {
 
         cvDao.addPhotoToCv(cvId, photoId);
         return new SuccessResult("Fotoğraf  başarıyla eklendi");
+    }
+
+    @Override
+    public DataResult<List<Cv>> getByJobSeekerId(int jobSeekerId) {
+        if(!jobSeekerDao.existsById(jobSeekerId))
+            return new ErrorDataResult<>("Böyle bir iş arayan bulunamadı.");
+
+        return new SuccessDataResult<>(cvDao.getCvsByJobSeekerId(jobSeekerId),"İş arayana ait cv'ler başarıyla getirildi.");
     }
 
 

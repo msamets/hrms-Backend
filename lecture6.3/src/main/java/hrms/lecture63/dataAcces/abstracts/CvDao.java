@@ -93,5 +93,5 @@ public interface CvDao  extends JpaRepository<Cv,Integer> {
     )
     void addPhotoToCv(int cvId, int photoId);
 
-
+    List<Cv> getCvsByJobSeekerId(int jobSeekerId);
 }
