@@ -12,6 +12,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/jobSeekerLanguage")
+@CrossOrigin
 public class JobSeekerLanguageController {
 
     @Autowired

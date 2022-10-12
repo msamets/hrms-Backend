@@ -27,6 +27,9 @@ public class Cv {
     @Column(name = "id")
     private int id;
 
+    @Column(name = "cv_name")
+    private String cvName;
+
     @ManyToOne
     @JoinColumn(name = "job_seeker_user_id",referencedColumnName = "user_id",nullable = false)
     @NotNull

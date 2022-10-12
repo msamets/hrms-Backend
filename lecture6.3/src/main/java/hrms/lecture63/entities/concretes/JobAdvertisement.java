@@ -37,17 +37,15 @@ public class JobAdvertisement {
 	@Column(name = "id")
 	private int id;
 	
-	@JsonIgnore
+
 	@ManyToOne//(cascade = CascadeType.ALL)
 	@JoinColumn(name = "employer_user_id", referencedColumnName = "user_id",nullable = false)
-	@NotBlank
 	@NotNull
 	private Employer employer;
 	
-	@JsonIgnore
+
 	@ManyToOne//(cascade = CascadeType.ALL)
 	@JoinColumn(name = "job_position_id",referencedColumnName = "id",nullable = false)
-	@NotBlank
 	@NotNull
 	private JobPosition jobPosition;
 	
@@ -55,10 +53,7 @@ public class JobAdvertisement {
 	@NotBlank
 	@NotNull
 	private String jobDetail;
-	/*
-	@Column(name = "city")
-	private String city;
-	*/
+
 	@Column(name = "min_salary")
 	private int minSalary;//opsiyonel
 	
@@ -79,10 +74,9 @@ public class JobAdvertisement {
 	@Column(name = "created_date")
 	private LocalDateTime createdDate;
 	
-	@JsonIgnore
+
 	@ManyToOne//(cascade = CascadeType.ALL)
 	@JoinColumn(name = "city_id",referencedColumnName = "id",nullable = false)
-	@NotBlank
 	@NotNull
 	private City city;
 

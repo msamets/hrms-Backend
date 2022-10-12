@@ -16,7 +16,7 @@ import hrms.lecture63.entities.concretes.JobPosition;
 
 @Service
 public class JobPositionManager implements JobPositionService {
-	
+	@Autowired
 	private JobPositionDao jobPositionDao;
 	
 	@Autowired//(gidiyor projeyi tarıyor bu projede bu sınıfa denk geleni buluyor)
@@ -32,25 +32,21 @@ public class JobPositionManager implements JobPositionService {
 		return new SuccessDataResult<List<JobPosition>>(
 				this.jobPositionDao.findAll(),"İş pozisyonları listelendi.");
 	}
-
-	
-	public Result isJobPositionExist(String jobPositionName) {
-		if(this.jobPositionDao.findByJobPositionNameContainingIgnoreCase(jobPositionName) == null) {
-			return new ErrorResult();
-			}
-		return new SuccessResult();
-	}
-	
 	
 	
 	@Override
 	public Result add(JobPosition jobPosition) {
+
+
 		
 		
-		if(isJobPositionExist(jobPosition.getJobPositionName()).isSuccess()) {
+		if(jobPositionDao.existsById(jobPosition.getId())) {
 			return new ErrorResult("Girmiş olduğunuz pozisyon zaten mevcuttur.");
 		}
-		
+		else if (jobPosition == null || jobPosition.getJobPositionName().equals(null)) {
+			return new ErrorResult("İş pozisyonu boş bırakılamaz.");
+		}
+
 		this.jobPositionDao.save(jobPosition);
 		return new SuccessResult("İş pozisyonu başarıyla eklendi.");
 		

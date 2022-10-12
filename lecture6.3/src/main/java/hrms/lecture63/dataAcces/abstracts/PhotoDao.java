@@ -9,5 +9,7 @@ public interface PhotoDao extends JpaRepository<Photo, Integer> {
     Photo getByPublicId(String publicId);
     void deleteByPublicId(String publicId);
 
+    boolean existsByPublicId(String publicId);
+
     List<Photo> getByUserId(int userId);
 }

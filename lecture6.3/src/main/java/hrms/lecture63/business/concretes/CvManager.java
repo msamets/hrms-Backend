@@ -131,6 +131,9 @@ public class CvManager implements CvService {
     @Override
     public DataResult<List<JobSeekerJobExperience>> findJobSeekerJobExperienceOrderByQuitJobDateDesc(int cvId) {
 
+        if(!cvDao.existsById(cvId))
+            return new ErrorDataResult<>("Böyle bir cv mevcut değil.");
+
         //cvDao.getById(cvId).getJobSeekerJobExperiences()
 
         //Burda veritabanından bir veri getirmiyor veritabanından getirdiğimiz veriden id ye erişip o idnin classından jobSeeker
@@ -159,6 +162,10 @@ public class CvManager implements CvService {
 
     @Override
     public DataResult<List<JobSeekerSchool>> findJobSeekerSchoolOrderByGraduationDateDesc(int cvId) {
+
+        if(!cvDao.existsById(cvId))
+            return new ErrorDataResult<>("Böyle bir cv mevcut değil.");
+
 
         List<JobSeekerSchool> jobSeekerSchools = cvDao.getById(cvId).getJobSeekerSchools();
 

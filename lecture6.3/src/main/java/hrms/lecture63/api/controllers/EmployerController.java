@@ -5,11 +5,7 @@ import java.util.List;
 import hrms.lecture63.dataAcces.abstracts.JobSeekerDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import hrms.lecture63.business.abstracts.EmployerService;
 import hrms.lecture63.core.utilities.results.DataResult;
@@ -20,6 +16,7 @@ import javax.validation.Valid;
 
 @RequestMapping("/api/employer")
 @RestController
+@CrossOrigin
 public class EmployerController {
 	
 	private EmployerService employerService;

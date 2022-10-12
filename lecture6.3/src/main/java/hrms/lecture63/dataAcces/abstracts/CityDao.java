@@ -6,4 +6,5 @@ import hrms.lecture63.entities.concretes.City;
 
 public interface CityDao extends JpaRepository<City, Integer> {
 
+    boolean existsByName(String cityName);
 }
