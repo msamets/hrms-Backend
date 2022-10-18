@@ -46,20 +46,7 @@ public class JobSeekerManager implements JobSeekerService{
 
 	
 	
-	public Result isEmailExist(String email) {
-		if(this.jobSeekerDao.findByEmail(email) == null) {
-			return new ErrorResult();
-		}
-		
-		return new SuccessResult();
-	}
-	
-	public Result isTcNoExist(String tcNo) {
-		if(this.jobSeekerDao.findByTcNo(tcNo) == null) {
-			return new ErrorResult();
-		}
-		return new SuccessResult();
-	}
+
 
 	public Result isValidPerson(JobSeeker jobSeeker) throws Exception {
 		if(!mernisCheckService.checkIfRealPerson(jobSeeker).isSuccess()) {
@@ -74,24 +61,24 @@ public class JobSeekerManager implements JobSeekerService{
 	@Override
 	public Result add(JobSeeker jobSeeker) throws Exception {
 
-		String passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(.*[@#$%^&+=])?(?=\\S+$).{6,}$";
+		String passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$";
 		Pattern pattern =	Pattern.compile(passwordRegex,Pattern.UNICODE_CHARACTER_CLASS);
 		
 
 		
 
 		
-		if(isEmailExist(jobSeeker.getEmail()).isSuccess()) {
+		if(jobSeekerDao.existsJobSeekerByEmail(jobSeeker.getEmail())) {
 			return new ErrorResult("Girmiş olduğunuz email daha önce kullanılmıştır.");
 		}
 		
-		else if(isTcNoExist(jobSeeker.getTcNo()).isSuccess()) {
+		else if(jobSeekerDao.existsJobSeekerByNationalIdNumber(jobSeeker.getNationalIdNumber())) {
 			return new ErrorResult("Girmiş olduğunuz Tc numarası daha önce kullanımıştır.");
 		}
 		
 		else if(!pattern.matches(passwordRegex, jobSeeker.getPassword())) {
 			return new ErrorResult("Girmiş olduğunuz şifre geçerli değil."
-					+ "Şifre en az 6 karakterden ve bir küçük bir büyük harf ve"
+					+ "Şifre en az 8 karakterden ve bir küçük bir büyük harf ve"
 					+ "rakam içermek zorundadır."
 					+ "Lütfen geçerli bir şifre giriniz.");
 		}
