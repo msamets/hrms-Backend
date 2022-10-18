@@ -9,8 +9,11 @@ import hrms.lecture63.entities.concretes.Photo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.List;
@@ -32,20 +35,31 @@ public class PhotoManager implements PhotoService {
 
     @Override
     public DataResult<Photo> getById(int photoId) {
+        if(!photoDao.existsById(photoId))
+            return new ErrorDataResult<>("Böyle bir fotoğraf bulunamadı.");
         return new SuccessDataResult<>(photoDao.getById(photoId));
     }
 
     @Override
     public DataResult<Photo> getByPublicId(String publicId) {
+        if(!photoDao.existsByPublicId(publicId))
+            return new ErrorDataResult<>("Böyle bir fotoğraf bulunamadı.");
         return new SuccessDataResult<>(photoDao.getByPublicId(publicId));
     }
 
     @Override
     public Result upload(MultipartFile multipartFile, int userId) throws IOException {
-        if(!userDao.existsById(userId))
-            new ErrorResult("Böyle bir kullanıcı yok.");
 
-        if(multipartFile == null || multipartFile.isEmpty())
+        //Burda multipartfile boş dönünce hata geliyor console a ama
+        //hata buraya daha gelmeden önce request olarak hata veriyor
+        //o yüzden multipartfile ın boş dönmemesini front-end kısmında
+        //handle etmem gerek
+        if(!userDao.existsById(userId))
+            return new ErrorResult("Böyle bir kullanıcı yok.");
+
+
+
+        if(multipartFile == null || multipartFile.isEmpty() )
             return new ErrorResult("Yüklenecek fotoğraf uygun değil" +
                     "lütfen başka bir fotoğraf seçiniz.");
 

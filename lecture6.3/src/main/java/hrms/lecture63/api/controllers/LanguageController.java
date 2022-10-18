@@ -12,6 +12,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/language")
+@CrossOrigin
 public class LanguageController {
 
     @Autowired

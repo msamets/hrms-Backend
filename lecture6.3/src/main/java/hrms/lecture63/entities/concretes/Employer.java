@@ -26,20 +26,20 @@ import lombok.NoArgsConstructor;
 public class Employer extends User {
 	
 
-	@Column(name = "sirket_adi", nullable = false, unique = true)
+	@Column(name = "company_name", nullable = false, unique = true)
 	@NotNull
 	@NotBlank
-	private String sirketAdi;
+	private String companyName;
 	
-	@Column(name = "sirket_website", unique = false, nullable = false)
+	@Column(name = "company_website", nullable = false, unique = false)
 	@NotNull
 	@NotBlank
-	private String sirketWebsite;
+	private String companyWebsite;
 	
-	@Column(name = "telefon_no", nullable = false, unique = true)
+	@Column(name = "phone_number", nullable = false, unique = true)
 	@NotNull
 	@NotBlank
-	private String telefonNo;
+	private String phoneNumber;
 
 	//@JsonIgnoreProperties(value = {"employer"})
 	@JsonIgnore

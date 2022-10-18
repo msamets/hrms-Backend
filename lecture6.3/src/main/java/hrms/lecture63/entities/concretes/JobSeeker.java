@@ -25,20 +25,20 @@ import java.util.List;
 @JsonIgnoreProperties({"HibernateLazyInitializer", "handler"})
 public class JobSeeker extends User {
 	
-	@Column(name = "ad", nullable = false)
+	@Column(name = "name", nullable = false)
 	@NotNull
 	@NotBlank
-	private String ad;
+	private String name;
 	
-	@Column(name = "soyad" ,nullable = false)
+	@Column(name = "surname" ,nullable = false)
 	@NotNull
 	@NotBlank
-	private String soyad;
+	private String surname;
 	
-	@Column(name = "tc_no" ,unique = true, nullable = false)
+	@Column(name = "national_id_number" ,unique = true, nullable = false)
 	@NotNull
 	@NotBlank
-	private String tcNo;
+	private String nationalIdNumber;
 	
 	@Column(name = "birth_year", nullable = false)
 	@NotNull

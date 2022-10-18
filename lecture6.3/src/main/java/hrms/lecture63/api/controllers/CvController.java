@@ -15,6 +15,7 @@ import java.util.List;
 
 @RequestMapping("/api/cv")
 @RestController
+@CrossOrigin
 public class CvController {
 
     @Autowired

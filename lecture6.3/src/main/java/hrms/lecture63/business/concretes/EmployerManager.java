@@ -44,13 +44,7 @@ public class EmployerManager implements EmployerService {
 				, "İş verenler listelendi.");
 	}
 	
-	public Result isEmailExist(String email) {
-		if(this.employerDao.findByEmail(email) == null) {
-			return new ErrorResult();
-		}
-		
-		return new SuccessResult();
-	}
+
 	
 	
 	
@@ -60,7 +54,7 @@ public class EmployerManager implements EmployerService {
 
 	@Override
 	public Result add(Employer employer) {
-		String passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(.*[@#$%^&+=])?(?=\\S+$).{6,}$";
+		String passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$";
 		Pattern pattern =	Pattern.compile(passwordRegex,Pattern.UNICODE_CHARACTER_CLASS);
 		
 
@@ -68,13 +62,13 @@ public class EmployerManager implements EmployerService {
 
 		
 		
-		if(isEmailExist(employer.getEmail()).isSuccess()) {
+		if(employerDao.existsEmployerByEmail(employer.getEmail())) {
 			return new ErrorResult("Girmiş olduğunuz email daha önce kullanılmış.");
 		}
 		
 		else if(!pattern.matches(passwordRegex, employer.getPassword())) {
 			return new ErrorResult("Girmiş olduğunuz şifre geçerli değil."
-					+ "Şifre en az 6 karakterden ve bir küçük bir büyük harf ve"
+					+ "Şifre en az 8 karakterden ve bir küçük bir büyük harf ve"
 					+ "rakam içermek zorundadır."
 					+ "Lütfen geçerli bir şifre giriniz.");
 		}

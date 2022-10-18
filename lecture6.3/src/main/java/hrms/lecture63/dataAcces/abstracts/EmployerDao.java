@@ -7,4 +7,6 @@ import hrms.lecture63.entities.concretes.Employer;
 public interface EmployerDao extends JpaRepository<Employer, Integer> {
 	//Employer için e-posta
 	Employer findByEmail(String email);
+
+	boolean existsEmployerByEmail(String email);
 }

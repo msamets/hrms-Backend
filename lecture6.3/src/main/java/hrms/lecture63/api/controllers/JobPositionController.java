@@ -4,11 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import hrms.lecture63.business.abstracts.JobPositionService;
 import hrms.lecture63.core.utilities.results.DataResult;
@@ -24,6 +20,7 @@ import javax.validation.Valid;
 //dış dünyadan biri istekte bulunursa
 //bu kontrol cevap verecek demek
 //RequestMapping=birden fazla istek olabileceği için bunu kullandık
+@CrossOrigin
 public class JobPositionController {
 
 	

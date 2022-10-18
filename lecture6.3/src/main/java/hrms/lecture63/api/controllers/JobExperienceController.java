@@ -12,6 +12,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/jobExperience")
+@CrossOrigin
 public class JobExperienceController {
 
     @Autowired
