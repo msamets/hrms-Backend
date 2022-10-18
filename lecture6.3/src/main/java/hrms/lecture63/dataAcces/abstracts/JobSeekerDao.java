@@ -6,7 +6,7 @@ import hrms.lecture63.entities.concretes.JobSeeker;
 
 public interface JobSeekerDao extends JpaRepository<JobSeeker, Integer> {
 	//JobSeeker için e posta ve tc
-	JobSeeker getJobSeekerByTcNo(String tcNo);
+	JobSeeker getJobSeekerByNationalIdNumber(String nationalIdNumber);
 	JobSeeker getJobSeekerByEmail(String email);
 	
 	boolean existsJobSeekerByEmail(String email);

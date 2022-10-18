@@ -21,8 +21,8 @@ public class MernisCheckManager implements MernisCheckService {
 	public Result checkIfRealPerson(JobSeeker jobSeeker) throws Exception, Exception {
 		KPSPublicSoapProxy kpsPublicSoapProxy = new KPSPublicSoapProxy();
 		
-		boolean result = kpsPublicSoapProxy.TCKimlikNoDogrula(Long.parseLong(jobSeeker.getTcNo()), jobSeeker.getAd().toUpperCase(new Locale("tr","TR")),
-						jobSeeker.getSoyad().toUpperCase(new Locale("tr","TR")), jobSeeker.getBirthYear());
+		boolean result = kpsPublicSoapProxy.TCKimlikNoDogrula(Long.parseLong(jobSeeker.getNationalIdNumber()), jobSeeker.getName().toUpperCase(new Locale("tr","TR")),
+						jobSeeker.getSurname().toUpperCase(new Locale("tr","TR")), jobSeeker.getDateofBirth().getYear());
 		
 		if(!result) {
 			return new ErrorResult();

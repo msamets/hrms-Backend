@@ -12,6 +12,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -40,9 +41,9 @@ public class JobSeeker extends User {
 	@NotBlank
 	private String nationalIdNumber;
 	
-	@Column(name = "birth_year", nullable = false)
+	@Column(name = "date_of_birth", nullable = false)
 	@NotNull
-	private int birthYear;
+	private LocalDate dateofBirth;
 
 	@JsonIgnore
 	//@JsonIgnoreProperties(value = {"jobSeeker"})
